@@ -7,10 +7,10 @@
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/civiccc/react-waypoint.git"
+    "url": "https://github.com/seyoon20087/react-waypoint.git"
   },
-  "homepage": "https://github.com/civiccc/react-waypoint",
-  "bugs": "https://github.com/civiccc/react-waypoint/issues",
+  "homepage": "https://github.com/seyoon20087/react-waypoint",
+  "bugs": "https://github.com/seyoon20087/react-waypoint/issues",
   "scripts": {
     "build": "rimraf dist && pkgroll",
     "check-changelog": "expr $(git status --porcelain 2>/dev/null| grep \"^\\s*M.*CHANGELOG.md\" | wc -l) >/dev/null || (echo 'Please edit CHANGELOG.md' && exit 1)",
@@ -28,7 +28,7 @@
     "test:browser:watch": "karma start --no-single-run",
     "performance-test:watch": "webpack --watch --config webpack.config.performance-test.js"
   },
-  "author": "Brigade Engineering",
+  "author": "seyoon20087",
   "license": "MIT",
   "peerDependencies": {
     "react": ">= 15.3.0",
