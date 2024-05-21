@@ -1,13 +1,13 @@
 {
   "name": "@seyoon20087/react-waypoint",
-  "version": "10.4.0",
+  "version": "10.4.1",
   "description": "A React component to execute a function whenever you scroll to an element.",
   "main": "dist/index.cjs",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/seyoon20087/react-waypoint.git"
+    "url": "git+https://github.com/seyoon20087/react-waypoint.git"
   },
   "homepage": "https://github.com/seyoon20087/react-waypoint",
   "bugs": "https://github.com/seyoon20087/react-waypoint/issues",
