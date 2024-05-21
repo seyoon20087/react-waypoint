@@ -2,6 +2,6 @@
 // https://github.com/Galooshi/import-js
 module.exports = {
   importDevDependencies: true,
-  environments: ['node', 'browser'],
-  declarationKeyword: 'import',
+  environments: ["node", "browser"],
+  declarationKeyword: "import",
 };

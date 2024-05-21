@@ -12,7 +12,12 @@ scroll, scrollspies, or docking elements to the viewport on scroll.
 Inspired by [Waypoints][waypoints], except this little library grooves the
 [React][react] way.
 
+## For users
+
+This package is a fork of the unmaintained `react-waypoint` package to compile to ES6 rather than the provided ES5 preset, which results in smaller bundles.
+
 ## Demo
+
 ![Demo of React Waypoint in action](https://raw.github.com/civiccc/react-waypoint/master/react-waypoint-demo.gif)
 
 [View demo page][demo-page]
@@ -38,12 +43,12 @@ yarn add react-waypoint
 ## Usage
 
 ```jsx
-import { Waypoint } from 'react-waypoint';
+import { Waypoint } from "react-waypoint";
 
 <Waypoint
   onEnter={this._handleWaypointEnter}
   onLeave={this._handleWaypointLeave}
-/>
+/>;
 ```
 
 A waypoint normally fires `onEnter` and `onLeave` as you are scrolling, but it
@@ -59,10 +64,7 @@ time it is updated as long as it stays visible (e.g. for infinite scroll). You
 can then use a `key` prop to control when a waypoint is reused vs. re-created.
 
 ```jsx
-<Waypoint
-  key={cursor}
-  onEnter={this._loadMoreContent}
-/>
+<Waypoint key={cursor} onEnter={this._loadMoreContent} />
 ```
 
 Alternatively, you can also use an `onPositionChange` event to just get
@@ -70,9 +72,7 @@ notified when the waypoint's position (e.g. inside the viewport, above or
 below) has changed.
 
 ```jsx
-<Waypoint
-  onPositionChange={this._handlePositionChange}
-/>
+<Waypoint onPositionChange={this._handlePositionChange} />
 ```
 
 Waypoints can take a child, allowing you to track when a section of content
@@ -80,9 +80,7 @@ enters or leaves the viewport. For details, see [Children](#children), below.
 
 ```jsx
 <Waypoint onEnter={this._handleEnter}>
-  <div>
-    Some content here
-  </div>
+  <div>Some content here</div>
 </Waypoint>
 ```
 
@@ -137,7 +135,7 @@ enters or leaves the viewport. For details, see [Children](#children), below.
      * For instance, if you pass "20%", and the containing element is 100px tall,
      * then the waypoint will be triggered when it has been scrolled 20px beyond
      * the bottom of the containing element.
-     * 
+     *
      * Similar to `topOffset`, but for the bottom of the container.
      */
     bottomOffset: PropTypes.oneOfType([
@@ -201,7 +199,8 @@ destructuring](https://developer.mozilla.org/en/docs/Web/JavaScript/Reference/Op
 this means that you can use waypoints in the following way:
 
 ```jsx
-<Waypoint onEnter={({ previousPosition, currentPosition, event }) => {
+<Waypoint
+  onEnter={({ previousPosition, currentPosition, event }) => {
     // do something useful!
   }}
 />
@@ -211,7 +210,8 @@ If you are more familiar with plain old js functions, you'll do something like
 this:
 
 ```jsx
-<Waypoint onEnter={function(props) {
+<Waypoint
+  onEnter={function (props) {
     // here you can use `props.currentPosition`, `props.previousPosition`, and
     // `props.event`
   }}
@@ -294,19 +294,19 @@ and have the `ref` prop being handled automatically for you, like this:
 ```jsx
 class Block extends React.Component {
   render() {
-    return <div ref={this.props.innerRef}>Hello</div>
+    return <div ref={this.props.innerRef}>Hello</div>;
   }
 }
 
 const BlockWithRef = React.forwardRef((props, ref) => {
-  return <Block innerRef={ref} {...props} />
-})
+  return <Block innerRef={ref} {...props} />;
+});
 
 const App = () => (
   <Waypoint>
     <BlockWithRef />
   </Waypoint>
-)
+);
 ```
 
 If you can't do that because you are using older version of React then
@@ -317,22 +317,22 @@ this example:
 ```jsx
 class Block extends React.Component {
   render() {
-    return <div ref={this.props.innerRef}>Hello</div>
+    return <div ref={this.props.innerRef}>Hello</div>;
   }
 }
 Block.propTypes = {
   innerRef: PropTypes.func.isRequired,
-}
+};
 
 const App = () => (
   <Waypoint>
     <Block />
   </Waypoint>
-)
+);
 ```
 
-The `onEnter` callback will be called when *any* part of the child is visible
-in the viewport. The `onLeave` callback will be called when *all* of the child
+The `onEnter` callback will be called when _any_ part of the child is visible
+in the viewport. The `onLeave` callback will be called when _all_ of the child
 has exited the viewport.
 
 (Note that this is measured only on a single axis. What this means is that for a
@@ -360,7 +360,7 @@ first scrollable ancestor of the Waypoint.
 If that algorithm doesn't work for your use case, then you might find the
 `scrollableAncestor` prop useful. It allows you to specify what the scrollable
 ancestor is. Pass a reference to a DOM node as that prop, and the Waypoint will
-use the scroll position of *that* node, rather than its first scrollable
+use the scroll position of _that_ node, rather than its first scrollable
 ancestor.
 
 This can also be the string "window", which can be useful if you are using
@@ -393,6 +393,7 @@ OPTION 1: Add the `debug={true}` prop to your waypoint. When you do, you'll see 
 logs informing you about the internals of the waypoint.
 
 OPTION 2: Clone and modify the project locally.
+
 - clone this repo
 - add `console.log` or breakpoints where you think it would be useful.
 - `npm link` in the react-waypoint repo.

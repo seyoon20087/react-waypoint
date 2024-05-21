@@ -11,7 +11,7 @@
  *   was not a percentage.
  */
 export default function parseOffsetAsPercentage(str) {
-  if (str.slice(-1) === '%') {
+  if (str.slice(-1) === "%") {
     return parseFloat(str.slice(0, -1)) / 100;
   }
 

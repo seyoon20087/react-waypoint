@@ -11,9 +11,9 @@ module.exports = {
   },
 
   rules: {
-    'max-nested-callbacks': [2, 4],
-    'react/prop-types': 0,
-    'max-classes-per-file': 0,
-    'react/jsx-props-no-spreading': 0,
+    "max-nested-callbacks": [2, 4],
+    "react/prop-types": 0,
+    "max-classes-per-file": 0,
+    "react/jsx-props-no-spreading": 0,
   },
 };

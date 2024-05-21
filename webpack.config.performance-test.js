@@ -1,25 +1,25 @@
-const path = require('path');
+const path = require("path");
 
 // This config file is used to create a webpack bundle that we use on
 // test/performance-test.html to profile the performance footprint of the
 // component.
 module.exports = {
-  mode: 'production',
-  entry: path.join(__dirname, 'test/performance-test.jsx'),
+  mode: "production",
+  entry: path.join(__dirname, "test/performance-test.jsx"),
   output: {
-    path: path.join(__dirname, 'build'),
-    filename: 'performance-test.js',
+    path: path.join(__dirname, "build"),
+    filename: "performance-test.js",
   },
   resolve: {
-    extensions: ['.js', '.jsx', '.json'],
+    extensions: [".js", ".jsx", ".json"],
   },
-  devtool: 'source-map',
+  devtool: "source-map",
   module: {
     rules: [
       {
         test: /\.jsx?/,
         exclude: /node_modules/,
-        loader: 'babel-loader',
+        loader: "babel-loader",
       },
     ],
   },

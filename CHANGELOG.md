@@ -1,3 +1,11 @@
+## 10.4.0
+
+- [internal] Use pkgroll instead of rollup/babel
+  - Note: because of this, I needed to add `src/index.ts` since pkgroll doesn't (yet) provide a way to provide an entrypoint. Also, I'd rather not use rollup/babel/esbuild directly as it would add a burden to me when bundling packages and types.
+  - As a result, it's no longer transpiled to ES5. If support for such environments is needed, please transpile it yourself.
+- [internal] Update .gitignore
+- Allow React v19 in `package.json`
+
 ## 10.3.0
 
 - Allow React v18 in `package.json`.
@@ -150,9 +158,11 @@
 - Clear initial timeout when unmounting component.
 
 ## 5.0.2
+
 - Revert ES6 typescript definition.
 
 ## 5.0.1
+
 - Fix typescript definition to support ES6 imports
 
 ## 5.0.0

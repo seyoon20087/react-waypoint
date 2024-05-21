@@ -6,5 +6,5 @@
  * @return {bool} Whether the component is a DOM Element
  */
 export default function isDOMElement(Component) {
-  return (typeof Component.type === 'string');
+  return typeof Component.type === "string";
 }

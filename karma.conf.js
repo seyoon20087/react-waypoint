@@ -2,39 +2,35 @@
 
 module.exports = (config) => {
   config.set({
-
     // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+    basePath: "",
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ["jasmine"],
 
     // list of files / patterns to load in the browser
-    files: [
-      'tests.webpack.js',
-    ],
+    files: ["tests.webpack.js"],
 
     // list of files to exclude
-    exclude: [
-    ],
+    exclude: [],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors:
     // https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
-      'tests.webpack.js': ['webpack'],
+      "tests.webpack.js": ["webpack"],
     },
 
     webpack: {
-      mode: 'development',
+      mode: "development",
       module: {
         rules: [
           {
             test: /\.jsx?$/,
             exclude: /node_modules/,
             use: {
-              loader: 'babel-loader',
+              loader: "babel-loader",
               options: {
                 cacheDirectory: true,
               },
@@ -43,7 +39,7 @@ module.exports = (config) => {
         ],
       },
       resolve: {
-        extensions: ['.js', '.jsx', '.json'],
+        extensions: [".js", ".jsx", ".json"],
       },
     },
 
@@ -54,7 +50,7 @@ module.exports = (config) => {
     // test results reporter to use
     // possible values: 'dots', 'progress'
     // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress'],
+    reporters: ["progress"],
 
     // web server port
     port: 9876,
@@ -74,8 +70,8 @@ module.exports = (config) => {
     // start these browsers
     // available browser launchers:
     // https://npmjs.org/browse/keyword/karma-launcher
-    browsers: process.env.CONTINUOUS_INTEGRATION === 'true'
-      ? ['Firefox'] : ['Chrome'],
+    browsers:
+      process.env.CONTINUOUS_INTEGRATION === "true" ? ["Firefox"] : ["Chrome"],
 
     // if true, Karma captures browsers, runs the tests and exits
     singleRun: true,

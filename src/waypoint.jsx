@@ -1,33 +1,31 @@
 /* eslint-disable import/prefer-default-export */
 
-import { addEventListener } from 'consolidated-events';
-import PropTypes from 'prop-types';
-import React from 'react';
-import { isForwardRef } from 'react-is';
+import { addEventListener } from "consolidated-events";
+import PropTypes from "prop-types";
+import React from "react";
+import { isForwardRef } from "react-is";
 
-import computeOffsetPixels from './computeOffsetPixels';
-import {
-  INVISIBLE, INSIDE, BELOW, ABOVE,
-} from './constants';
-import debugLog from './debugLog';
-import ensureRefIsUsedByChild from './ensureRefIsUsedByChild';
-import isDOMElement from './isDOMElement';
-import getCurrentPosition from './getCurrentPosition';
-import onNextTick from './onNextTick';
-import resolveScrollableAncestorProp from './resolveScrollableAncestorProp';
+import computeOffsetPixels from "./computeOffsetPixels";
+import { INVISIBLE, INSIDE, BELOW, ABOVE } from "./constants";
+import debugLog from "./debugLog";
+import ensureRefIsUsedByChild from "./ensureRefIsUsedByChild";
+import isDOMElement from "./isDOMElement";
+import getCurrentPosition from "./getCurrentPosition";
+import onNextTick from "./onNextTick";
+import resolveScrollableAncestorProp from "./resolveScrollableAncestorProp";
 
-const hasWindow = typeof window !== 'undefined';
+const hasWindow = typeof window !== "undefined";
 
 const defaultProps = {
   debug: false,
   scrollableAncestor: undefined,
   children: undefined,
-  topOffset: '0px',
-  bottomOffset: '0px',
+  topOffset: "0px",
+  bottomOffset: "0px",
   horizontal: false,
-  onEnter() { },
-  onLeave() { },
-  onPositionChange() { },
+  onEnter() {},
+  onLeave() {},
+  onPositionChange() {},
   fireOnRapidScroll: true,
 };
 
@@ -59,20 +57,20 @@ export class Waypoint extends React.PureComponent {
       this._handleScroll = this._handleScroll.bind(this);
       this.scrollableAncestor = this._findScrollableAncestor();
 
-      if (process.env.NODE_ENV !== 'production' && debug) {
-        debugLog('scrollableAncestor', this.scrollableAncestor);
+      if (process.env.NODE_ENV !== "production" && debug) {
+        debugLog("scrollableAncestor", this.scrollableAncestor);
       }
 
       this.scrollEventListenerUnsubscribe = addEventListener(
         this.scrollableAncestor,
-        'scroll',
+        "scroll",
         this._handleScroll,
         { passive: true },
       );
 
       this.resizeEventListenerUnsubscribe = addEventListener(
         window,
-        'resize',
+        "resize",
         this._handleScroll,
         { passive: true },
       );
@@ -134,10 +132,7 @@ export class Waypoint extends React.PureComponent {
    *   as a fallback.
    */
   _findScrollableAncestor() {
-    const {
-      horizontal,
-      scrollableAncestor,
-    } = this.props;
+    const { horizontal, scrollableAncestor } = this.props;
 
     if (scrollableAncestor) {
       return resolveScrollableAncestorProp(scrollableAncestor);
@@ -155,11 +150,15 @@ export class Waypoint extends React.PureComponent {
 
       const style = window.getComputedStyle(node);
       const overflowDirec = horizontal
-        ? style.getPropertyValue('overflow-x')
-        : style.getPropertyValue('overflow-y');
-      const overflow = overflowDirec || style.getPropertyValue('overflow');
+        ? style.getPropertyValue("overflow-x")
+        : style.getPropertyValue("overflow-y");
+      const overflow = overflowDirec || style.getPropertyValue("overflow");
 
-      if (overflow === 'auto' || overflow === 'scroll' || overflow === 'overlay') {
+      if (
+        overflow === "auto" ||
+        overflow === "scroll" ||
+        overflow === "overlay"
+      ) {
         return node;
       }
     }
@@ -183,17 +182,12 @@ export class Waypoint extends React.PureComponent {
     const bounds = this._getBounds();
     const currentPosition = getCurrentPosition(bounds);
     const previousPosition = this._previousPosition;
-    const {
-      debug,
-      onPositionChange,
-      onEnter,
-      onLeave,
-      fireOnRapidScroll,
-    } = this.props;
+    const { debug, onPositionChange, onEnter, onLeave, fireOnRapidScroll } =
+      this.props;
 
-    if (process.env.NODE_ENV !== 'production' && debug) {
-      debugLog('currentPosition', currentPosition);
-      debugLog('previousPosition', previousPosition);
+    if (process.env.NODE_ENV !== "production" && debug) {
+      debugLog("currentPosition", currentPosition);
+      debugLog("previousPosition", previousPosition);
     }
 
     // Save previous position as early as possible to prevent cycles
@@ -221,10 +215,10 @@ export class Waypoint extends React.PureComponent {
       onLeave.call(this, callbackArg);
     }
 
-    const isRapidScrollDown = previousPosition === BELOW
-      && currentPosition === ABOVE;
-    const isRapidScrollUp = previousPosition === ABOVE
-      && currentPosition === BELOW;
+    const isRapidScrollDown =
+      previousPosition === BELOW && currentPosition === ABOVE;
+    const isRapidScrollUp =
+      previousPosition === ABOVE && currentPosition === BELOW;
 
     if (fireOnRapidScroll && (isRapidScrollDown || isRapidScrollUp)) {
       // If the scroll event isn't fired often enough to occur while the
@@ -252,9 +246,7 @@ export class Waypoint extends React.PureComponent {
 
   _getBounds() {
     const { horizontal, debug } = this.props;
-    const {
-      left, top, right, bottom,
-    } = this._ref.getBoundingClientRect();
+    const { left, top, right, bottom } = this._ref.getBoundingClientRect();
     const waypointTop = horizontal ? left : top;
     const waypointBottom = horizontal ? right : bottom;
 
@@ -264,18 +256,19 @@ export class Waypoint extends React.PureComponent {
       contextHeight = horizontal ? window.innerWidth : window.innerHeight;
       contextScrollTop = 0;
     } else {
-      contextHeight = horizontal ? this.scrollableAncestor.offsetWidth
+      contextHeight = horizontal
+        ? this.scrollableAncestor.offsetWidth
         : this.scrollableAncestor.offsetHeight;
       contextScrollTop = horizontal
         ? this.scrollableAncestor.getBoundingClientRect().left
         : this.scrollableAncestor.getBoundingClientRect().top;
     }
 
-    if (process.env.NODE_ENV !== 'production' && debug) {
-      debugLog('waypoint top', waypointTop);
-      debugLog('waypoint bottom', waypointBottom);
-      debugLog('scrollableAncestor height', contextHeight);
-      debugLog('scrollableAncestor scrollTop', contextScrollTop);
+    if (process.env.NODE_ENV !== "production" && debug) {
+      debugLog("waypoint top", waypointTop);
+      debugLog("waypoint bottom", waypointBottom);
+      debugLog("scrollableAncestor height", contextHeight);
+      debugLog("scrollableAncestor scrollTop", contextScrollTop);
     }
 
     const { bottomOffset, topOffset } = this.props;
@@ -307,7 +300,7 @@ export class Waypoint extends React.PureComponent {
       const ref = (node) => {
         this.refElement(node);
         if (children.ref) {
-          if (typeof children.ref === 'function') {
+          if (typeof children.ref === "function") {
             children.ref(node);
           } else {
             children.ref.current = node;
@@ -320,9 +313,18 @@ export class Waypoint extends React.PureComponent {
 
     return React.cloneElement(children, { innerRef: this.refElement });
   }
+
+  static above = ABOVE;
+  static below = BELOW;
+  static inside = INSIDE;
+  static invisible = INVISIBLE;
+
+  static defaultProps = defaultProps;
+  static displayName =
+    process.env.NODE_ENV !== "production" ? "Waypoint" : undefined;
 }
 
-if (process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== "production") {
   Waypoint.propTypes = {
     children: PropTypes.element,
     debug: PropTypes.bool,
@@ -341,10 +343,7 @@ if (process.env.NODE_ENV !== 'production') {
     // For instance, if you pass "-20%", and the containing element is 100px tall,
     // then the waypoint will be triggered when it has been scrolled 20px beyond
     // the top of the containing element.
-    topOffset: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    topOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
 
     // `bottomOffset` can either be a number, in which case its a distance from the
     // bottom of the container in pixels, or a string value. Valid string values are
@@ -354,16 +353,13 @@ if (process.env.NODE_ENV !== 'production') {
     // then the waypoint will be triggered when it has been scrolled 20px beyond
     // the bottom of the containing element.
     // Similar to `topOffset`, but for the bottom of the container.
-    bottomOffset: PropTypes.oneOfType([
-      PropTypes.string,
-      PropTypes.number,
-    ]),
+    bottomOffset: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
   };
 }
 
-Waypoint.above = ABOVE;
-Waypoint.below = BELOW;
-Waypoint.inside = INSIDE;
-Waypoint.invisible = INVISIBLE;
-Waypoint.defaultProps = defaultProps;
-Waypoint.displayName = 'Waypoint';
+//Waypoint.above = ABOVE;
+//Waypoint.below = BELOW;
+//Waypoint.inside = INSIDE;
+//Waypoint.invisible = INVISIBLE;
+//Waypoint.defaultProps = defaultProps;
+//Waypoint.displayName = "Waypoint";

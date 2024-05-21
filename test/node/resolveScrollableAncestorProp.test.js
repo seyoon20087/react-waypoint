@@ -1,13 +1,13 @@
-import resolveScrollableAncestorProp from '../../src/resolveScrollableAncestorProp';
+import resolveScrollableAncestorProp from "../../src/resolveScrollableAncestorProp";
 
-describe('resolveScrollableAncestorProp()', () => {
+describe("resolveScrollableAncestorProp()", () => {
   it('converts "window" into `global.window`', () => {
     global.window = {};
 
-    expect(resolveScrollableAncestorProp('window')).toEqual(global.window);
+    expect(resolveScrollableAncestorProp("window")).toEqual(global.window);
   });
 
-  it('passes other values through', () => {
-    expect(resolveScrollableAncestorProp('foo')).toEqual('foo');
+  it("passes other values through", () => {
+    expect(resolveScrollableAncestorProp("foo")).toEqual("foo");
   });
 });

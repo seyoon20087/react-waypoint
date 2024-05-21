@@ -1,6 +1,6 @@
-import onNextTick from '../../src/onNextTick';
+import onNextTick from "../../src/onNextTick";
 
-describe('onNextTick()', () => {
+describe("onNextTick()", () => {
   beforeEach(() => {
     jest.useFakeTimers();
   });
@@ -9,7 +9,7 @@ describe('onNextTick()', () => {
     jest.clearAllTimers();
   });
 
-  it('does not call callbacks immediately', () => {
+  it("does not call callbacks immediately", () => {
     const called = [];
 
     onNextTick(() => {
@@ -29,7 +29,7 @@ describe('onNextTick()', () => {
     jest.advanceTimersByTime(1);
   });
 
-  it('calls callbacks in order', () => {
+  it("calls callbacks in order", () => {
     const called = [];
 
     onNextTick(() => {
@@ -49,7 +49,7 @@ describe('onNextTick()', () => {
     expect(called).toEqual([0, 1, 2]);
   });
 
-  it('does not call callbacks that have been unsubscribed', () => {
+  it("does not call callbacks that have been unsubscribed", () => {
     const called = [];
 
     onNextTick(() => {
@@ -71,7 +71,7 @@ describe('onNextTick()', () => {
     expect(called).toEqual([0, 2]);
   });
 
-  it('does nothing if unsubscribe is called multiple times', () => {
+  it("does nothing if unsubscribe is called multiple times", () => {
     const called = [];
 
     onNextTick(() => {
@@ -95,7 +95,7 @@ describe('onNextTick()', () => {
     expect(called).toEqual([0, 2]);
   });
 
-  it('does nothing when unsubscribing a callback that has already been called', () => {
+  it("does nothing when unsubscribing a callback that has already been called", () => {
     const called = [];
 
     onNextTick(() => {

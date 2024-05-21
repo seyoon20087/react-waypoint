@@ -11,7 +11,7 @@ export default function onNextTick(cb) {
       // Drain the timeoutQueue
       let item;
       // eslint-disable-next-line no-cond-assign
-      while (item = timeoutQueue.shift()) {
+      while ((item = timeoutQueue.shift())) {
         item();
       }
     }, 0);

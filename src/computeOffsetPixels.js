@@ -1,5 +1,5 @@
-import parseOffsetAsPercentage from './parseOffsetAsPercentage';
-import parseOffsetAsPixels from './parseOffsetAsPixels';
+import parseOffsetAsPercentage from "./parseOffsetAsPercentage";
+import parseOffsetAsPixels from "./parseOffsetAsPixels";
 
 /**
  * @param {string|number} offset
@@ -9,12 +9,12 @@ import parseOffsetAsPixels from './parseOffsetAsPixels';
 export default function computeOffsetPixels(offset, contextHeight) {
   const pixelOffset = parseOffsetAsPixels(offset);
 
-  if (typeof pixelOffset === 'number') {
+  if (typeof pixelOffset === "number") {
     return pixelOffset;
   }
 
   const percentOffset = parseOffsetAsPercentage(offset);
-  if (typeof percentOffset === 'number') {
+  if (typeof percentOffset === "number") {
     return percentOffset * contextHeight;
   }
 

@@ -1,15 +1,10 @@
 {
-  "name": "react-waypoint",
-  "version": "10.3.0",
+  "name": "@seyoon20087/react-waypoint",
+  "version": "10.4.0",
   "description": "A React component to execute a function whenever you scroll to an element.",
-  "main": "cjs/index.js",
-  "module": "es/index.js",
-  "types": "index.d.ts",
-  "files": [
-    "cjs",
-    "es",
-    "index.d.ts"
-  ],
+  "main": "dist/index.cjs",
+  "module": "dist/index.mjs",
+  "types": "dist/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/civiccc/react-waypoint.git"
@@ -17,7 +12,7 @@
   "homepage": "https://github.com/civiccc/react-waypoint",
   "bugs": "https://github.com/civiccc/react-waypoint/issues",
   "scripts": {
-    "build": "npm run clean && rollup -c",
+    "build": "rimraf dist && pkgroll",
     "check-changelog": "expr $(git status --porcelain 2>/dev/null| grep \"^\\s*M.*CHANGELOG.md\" | wc -l) >/dev/null || (echo 'Please edit CHANGELOG.md' && exit 1)",
     "check-only-changelog-changed": "(expr $(git status --porcelain 2>/dev/null| grep -v \"CHANGELOG.md\" | wc -l) >/dev/null && echo 'Only CHANGELOG.md may have uncommitted changes' && exit 1) || exit 0",
     "clean": "rimraf es cjs",
@@ -36,15 +31,18 @@
   "author": "Brigade Engineering",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^15.3.0 || ^16.0.0 || ^17.0.0 || ^18.0.0"
+    "react": ">= 15.3.0",
+    "prop-types": ">=15"
   },
   "devDependencies": {
     "@babel/cli": "^7.0.0",
     "@babel/core": "^7.0.0",
+    "@babel/runtime": "^7.12.5",
     "@rollup/plugin-babel": "^5.2.1",
     "@types/react": "^16.14.5",
     "babel-loader": "^8.0.0",
     "babel-preset-airbnb": "^5.0.0",
+    "consolidated-events": "^1.1.0 || ^2.0.0",
     "eslint": "^7.12.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-plugin-import": "^2.22.0",
@@ -61,12 +59,17 @@
     "karma-jasmine": "^1.1.2",
     "karma-webpack": "^4.0.2",
     "loose-envify": "^1.4.0",
+    "pkgroll": "^2.1.0",
+    "prettier": "^3.2.5",
+    "prop-types": "^15.0.0",
     "react": "^16.0.0 || ^17.0.0 || ^18.0.0",
     "react-dom": "^16.0.0 || ^17.0.0 || ^18.0.0",
+    "react-is": "^17.0.1 || ^18.0.0",
     "react-test-renderer": "^16.0.0 || ^17.0.0 || ^18.0.0",
     "rimraf": "^3.0.2",
     "rollup": "^2.33.2",
     "safe-publish-latest": "^1.1.1",
+    "typescript": "^5.4.5",
     "webpack": "^4.46.0",
     "webpack-cli": "^4.4.0"
   },
@@ -78,12 +81,6 @@
     "onscroll",
     "scrollspy"
   ],
-  "dependencies": {
-    "@babel/runtime": "^7.12.5",
-    "consolidated-events": "^1.1.0 || ^2.0.0",
-    "prop-types": "^15.0.0",
-    "react-is": "^17.0.1 || ^18.0.0"
-  },
   "browserify": {
     "transform": [
       "loose-envify"

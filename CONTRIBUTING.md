@@ -19,8 +19,7 @@ changes.
 ## Publishing a new version
 
 1. Add list of changes to CHANGELOG.md. Do not commit them yet.
-2. Run `npm version major`, `npm version minor`, or `npm
-   version patch`.
+2. Run `npm version major`, `npm version minor`, or `npm version patch`.
 
 This will handle the rest of the process for you, including running tests,
 cleaning out the previous build, building the package, bumping the version,

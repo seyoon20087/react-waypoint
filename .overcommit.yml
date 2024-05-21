@@ -5,18 +5,18 @@ CommitMsg:
 PreCommit:
   ALL:
     exclude:
-      - 'node_modules/**/*'
+      - "node_modules/**/*"
 
   EsLint:
     enabled: true
-    required_executable: './node_modules/.bin/eslint'
+    required_executable: "./node_modules/.bin/eslint"
     include:
-      - '**/*.js'
-      - '**/*.jsx'
+      - "**/*.js"
+      - "**/*.jsx"
 
   HardTabs:
     enabled: true
-    description: 'Checking for hard tabs'
+    description: "Checking for hard tabs"
 
   JsonSyntax:
     enabled: true

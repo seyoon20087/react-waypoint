@@ -1,8 +1,8 @@
 /* eslint-disable max-len, react/no-multi-comp, react/jsx-no-bind */
-import React, { Component } from 'react';
-import ReactDOM from 'react-dom';
+import React, { Component } from "react";
+import ReactDOM from "react-dom";
 
-import { Waypoint } from '../src/waypoint';
+import { Waypoint } from "../src/waypoint";
 
 const WAYPOINT_COUNT = 1000;
 
@@ -77,8 +77,8 @@ class PerformanceTest extends Component {
             <div
               style={{
                 height: 300,
-                backgroundColor: '#f0f0f0',
-                borderBottom: '1px solid #ccc',
+                backgroundColor: "#f0f0f0",
+                borderBottom: "1px solid #ccc",
               }}
             />
           )}
@@ -93,4 +93,4 @@ class PerformanceTest extends Component {
   }
 }
 
-ReactDOM.render(<PerformanceTest />, document.getElementById('app'));
+ReactDOM.render(<PerformanceTest />, document.getElementById("app"));
